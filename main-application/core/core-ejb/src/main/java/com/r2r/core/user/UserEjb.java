@@ -70,7 +70,7 @@ public class UserEjb extends EntityDaoEjb {
                     .getSingleResult();
         } catch (NoResultException nr) {
             return null;
-        }
+        } 
     }
 
     public void changePasswordUsuario(Integer idUser, String password, Usuario userLastModif) throws DatabaseException {
