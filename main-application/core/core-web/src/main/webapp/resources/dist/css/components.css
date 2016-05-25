@@ -1,0 +1,30 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : 22-mar-2015, 20:24:49
+    Author     : ISC Carlos Ruiz
+*/
+.editSeparator{
+    margin-right: 4px;
+}
+
+.asterisc-size-small {
+    font-size: 0.6em;
+}
+
+.margin-right-tiny{
+    margin-right: 5px;
+}
+
+.user-image-sm{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.font-bold{
+    font-weight: bold;
+}

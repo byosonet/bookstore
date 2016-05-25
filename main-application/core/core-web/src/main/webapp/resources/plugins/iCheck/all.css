@@ -1,0 +1,61 @@
+/* iCheck plugin skins
+----------------------------------- */
+@import url("#{resource['plugins/iCheck/minimal/_all.css']}");
+/*
+@import url("#{resource['plugins/iCheck/minimal/minimal.css']}");
+@import url("#{resource['plugins/iCheck/minimal/red.css']}");
+@import url("#{resource['plugins/iCheck/minimal/green.css']}");
+@import url("#{resource['plugins/iCheck/minimal/blue.css']}");
+@import url("#{resource['plugins/iCheck/minimal/aero.css']}");
+@import url("#{resource['plugins/iCheck/minimal/grey.css']}");
+@import url("#{resource['plugins/iCheck/minimal/orange.css']}");
+@import url("#{resource['plugins/iCheck/minimal/yellow.css']}");
+@import url("#{resource['plugins/iCheck/minimal/pink.css']}");
+@import url("#{resource['plugins/iCheck/minimal/purple.css']}");
+*/
+
+@import url("#{resource['plugins/iCheck/square/_all.css']}");
+/*
+@import url("#{resource['plugins/iCheck/square/square.css']}");
+@import url("#{resource['plugins/iCheck/square/red.css']}");
+@import url("#{resource['plugins/iCheck/square/green.css']}");
+@import url("#{resource['plugins/iCheck/square/blue.css']}");
+@import url("#{resource['plugins/iCheck/square/aero.css']}");
+@import url("#{resource['plugins/iCheck/square/grey.css']}");
+@import url("#{resource['plugins/iCheck/square/orange.css']}");
+@import url("#{resource['plugins/iCheck/square/yellow.css']}");
+@import url("#{resource['plugins/iCheck/square/pink.css']}");
+@import url("#{resource['plugins/iCheck/square/purple.css']}");
+*/
+
+@import url("#{resource['plugins/iCheck/flat/_all.css']}");
+/*
+@import url("#{resource['plugins/iCheck/flat/flat.css']}");
+@import url("#{resource['plugins/iCheck/flat/red.css']}");
+@import url("#{resource['plugins/iCheck/flat/green.css']}");
+@import url("#{resource['plugins/iCheck/flat/blue.css']}");
+@import url("#{resource['plugins/iCheck/flat/aero.css']}");
+@import url("#{resource['plugins/iCheck/flat/grey.css']}");
+@import url("#{resource['plugins/iCheck/flat/orange.css']}");
+@import url("#{resource['plugins/iCheck/flat/yellow.css']}");
+@import url("#{resource['plugins/iCheck/flat/pink.css']}");
+@import url("#{resource['plugins/iCheck/flat/purple.css']}");
+*/
+
+@import url("#{resource['plugins/iCheck/line/_all.css']}");
+/*
+@import url("#{resource['plugins/iCheck/line/line.css']}");
+@import url("#{resource['plugins/iCheck/line/red.css']}");
+@import url("#{resource['plugins/iCheck/line/green.css']}");
+@import url("#{resource['plugins/iCheck/line/blue.css']}");
+@import url("#{resource['plugins/iCheck/line/aero.css']}");
+@import url("#{resource['plugins/iCheck/line/grey.css']}");
+@import url("#{resource['plugins/iCheck/line/orange.css']}");
+@import url("#{resource['plugins/iCheck/line/yellow.css']}");
+@import url("#{resource['plugins/iCheck/line/pink.css']}");
+@import url("#{resource['plugins/iCheck/line/purple.css']}");
+*/
+
+@import url("#{resource['plugins/iCheck/polaris/polaris.css']}");
+
+@import url("#{resource['plugins/iCheck/futurico/futurico.css']}");

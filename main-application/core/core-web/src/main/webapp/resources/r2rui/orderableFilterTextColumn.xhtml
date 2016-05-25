@@ -1,0 +1,9 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/resources/r2rui/orderableColumn.xhtml">
+    <ui:define name="filterInput">
+        <p:inputText styleClass="ui-column-filter ui-fill-width-border-box"
+                     value="#{lazyModel.getFilterTuple(field).b}" onkeyup="PF('datatable').filter();"/>
+    </ui:define>
+</ui:composition>

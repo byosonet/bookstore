@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:o="http://omnifaces.org/ui">
+    <p:column headerText="#{msg.accion}" style="width: 6em; vertical-align: middle; text-align: center;" >
+        <p:button outcome="#{editOutcome}"
+                  styleClass="editSeparator btn btn-xs btn-warning fa fa-pencil btn-column" title="#{msg.editar}" value="">
+            <f:param name="id" value="#{catalog.id}"/>
+        </p:button>
+        <o:importConstants type="org.primefaces.model.SortOrder"/>
+        <o:importConstants type="com.r2r.core.db.entity.common.Status"/>
+        <p:button styleClass="btn btn-xs btn-danger fa fa-trash-o btn-column" title="#{msg.deshabilitar}"
+                  value=""
+                  rendered="#{catalog.estatus eq Status.ENABLED}" onclick="event.preventDefault();
+                          jQuery('#disableDialogEntityName').html('#{catalogLabel}');
+                          jQuery('#disableDialogIdInput').val('#{catalog.id}');
+                          $('#disableDialog').modal('show');
+                          return false;"/>
+        <p:button styleClass="btn btn-xs btn-success fa fa-check btn-column" title="#{msg.habilitar}"
+                  value=""
+                  rendered="#{catalog.estatus eq Status.DISABLED}" onclick="event.preventDefault();
+                          jQuery('#enableDialogEntityName').html('#{catalogLabel}');
+                          jQuery('#enableDialogIdInput').val('#{catalog.id}');
+                          $('#enableDialog').modal('show');
+                          return false;"/>
+    </p:column>
+</ui:composition>

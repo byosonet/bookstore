@@ -1,0 +1,79 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/resources/template/mainTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:r2r="http://xmlns.jcp.org/jsf/composite/r2rcomp"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="title">#{msg.permissions}</ui:define>
+    <ui:define name="subtitle">#{msg.permissionsListado}</ui:define>
+    <ui:define name="content">
+        <div class="row">
+
+            <!-- general form elements -->
+
+            <!-- form start -->
+            <h:form role="form" prependId="false">
+                <div class="col-md-12">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <h3 class="box-title">#{msg.permissionsListado}</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            <ui:decorate template="/resources/r2rui/datatable.xhtml">
+                                <ui:param name="value" value="#{permissions.lazyModel}"/>
+                                <ui:define name="columns">
+                                    <p:column headerText="Foto" style="text-align: center; vertical-align: middle;">
+                                        <h:panelGroup rendered="#{not empty item.foto}">
+                                            <r2r:userImage image="#{item.foto}" imageClass="user-image-sm #{item.id}user" alt="User image"  />
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{empty item.foto}">
+                                            <r2r:userImage image="#{item.foto}" imageClass="user-image-sm" alt="User image"  />
+                                        </h:panelGroup>
+                                    </p:column>
+                                    <ui:decorate template="/resources/r2rui/orderableFilterTextColumn.xhtml">
+                                        <ui:param name="headerText" value="#{msg.permissionsLogin}"/>
+                                        <ui:param name="field" value="login"/>
+                                        #{item.login}
+                                    </ui:decorate>
+                                    <ui:decorate template="/resources/r2rui/orderableFilterTextColumn.xhtml">
+                                        <ui:param name="headerText" value="#{msg.permissionsNombre}"/>
+                                        <ui:param name="field" value="nombre"/>
+                                        #{item.nombre}
+                                    </ui:decorate>
+                                    <ui:decorate template="/resources/r2rui/orderableFilterTextColumn.xhtml">
+                                        <ui:param name="headerText" value="#{msg.permissionsAPaterno}"/>
+                                        <ui:param name="field" value="APaterno"/>
+                                        #{item.APaterno}
+                                    </ui:decorate>
+                                    <ui:decorate template="/resources/r2rui/orderableFilterTextColumn.xhtml">
+                                        <ui:param name="headerText" value="#{msg.permissionsAMaterno}"/>
+                                        <ui:param name="field" value="AMaterno"/>
+                                        #{item.AMaterno}
+                                    </ui:decorate>
+                                    <ui:decorate template="/resources/r2rui/editDisableColumn.xhtml">
+                                        <ui:param name="editOutcome" value="/seguridad/permiso/permiso-edicion"/>
+                                        <ui:param name="catalog" value="#{item}"/>
+                                        <ui:param name="catalogLabel" value="#{item.fullName}"/>
+                                    </ui:decorate>
+                                </ui:define>
+                            </ui:decorate>
+                        </div>
+                    </div>
+                </div>
+            </h:form>
+        </div>
+        <ui:decorate template="/resources/r2rui/disableDialog.xhtml">
+            <ui:param name="id" value="#{permissions.id}"/>
+            <ui:param name="listTableBase" value="#{permissions}"/>
+        </ui:decorate>
+        <ui:decorate template="/resources/r2rui/enableDialog.xhtml">
+            <ui:param name="id" value="#{permissions.id}"/>
+            <ui:param name="listTableBase" value="#{permissions}"/>
+        </ui:decorate>
+
+
+    </ui:define>
+</ui:composition>
+

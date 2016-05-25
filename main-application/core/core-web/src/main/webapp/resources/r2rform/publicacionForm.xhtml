@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:r2r="http://xmlns.jcp.org/jsf/composite/r2rcomp"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <!-- INTERFACE -->
+    <cc:interface componentType="publicacionForm">
+        <cc:attribute name="value"
+                      type="com.r2r.bookstore.db.entity.Publicacion"
+                      required="true"/>
+        <cc:attribute name="actionForm"
+                      method-signature="java.lang.String action()"
+                      required="true"/>
+        <cc:attribute name="update"
+                      type="java.lang.String" />
+        <cc:attribute name="outcome"
+                      required="true"
+                      type="java.lang.String" />
+        <cc:attribute name="portada"/>
+        <cc:attribute name="alta" type="java.lang.Boolean" default="false" />
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <div class="row">
+            <!-- general form elements -->
+
+            <!-- form start -->
+            <h:form id="form" role="form" enctype="multipart/form-data" prependId="false" >
+
+                <ui:decorate template="/resources/r2rui/form.xhtml">
+                    <ui:param name="headerTitle" value="#{msg.publicacionDatosPublicacion}"/>
+                    <ui:define name="box-body">
+                        <ui:decorate template="/resources/r2rui/formColumn.xhtml">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <r2r:inputText value="#{cc.attrs.value.nombre}" 
+                                                   label="#{msg.publicacionNombreDeLaPublicacion}" 
+                                                   required="true" 
+                                                   placeholder="#{msg.etiquetaPlaceolderNombreDeLaPublicacion}" />
+                                </div>
+				<div class="col-md-6">
+                                    <r2r:inputText value="#{cc.attrs.value.isbn}" 
+                                                   label="#{msg.publicacionIsbn}" 
+                                                   required="true" 
+                                                   placeholder="#{msg.etiquetaPlaceolderPubIsbn}"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <r2r:inputText value="#{cc.attrs.value.urlArchivo}" 
+                                                   label="#{msg.publicacionUrlPublicacion}" 
+                                                   required="true" 
+                                                   placeholder="#{msg.etiquetaPlaceolderPubArchivo}" />
+                                </div>
+                            </div>                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <r2r:selectOneMenu id="autor" value="#{cc.attrs.value.autor}" 
+                                                       required="true" 
+                                                       label="#{msg.publicacionAutor}">
+                                        <f:selectItem itemLabel="#{msg.selecccioneUnaOpcion}" noSelectionOption="true" />
+                                        <f:selectItems value="#{cc.catalogoAutor}" var="autor" itemLabel="#{autor.nombreCompleto}" itemValue="#{autor}" />                                        
+                                    </r2r:selectOneMenu>
+                                </div>
+                                <div class="col-md-6">
+                                    <r2r:selectOneMenu id="editorial" value="#{cc.attrs.value.editorial}" 
+                                                       required="true" 
+                                                       label="#{msg.publicacionEditorial}">
+                                        <f:selectItem itemLabel="#{msg.selecccioneUnaOpcion}" noSelectionOption="true" />
+                                        <f:selectItems value="#{cc.catalogoEditorial}" var="editorial" itemLabel="#{editorial.nombre}" itemValue="#{editorial}" />                                        
+                                    </r2r:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <r2r:selectOneMenu id="tema" value="#{cc.attrs.value.tema}" 
+                                                       required="true" 
+                                                       label="#{msg.publicacionTema}">
+                                        <f:selectItem itemLabel="#{msg.selecccioneUnaOpcion}" noSelectionOption="true" />
+                                        <f:selectItems value="#{cc.catalogoTema}" var="tema" itemLabel="#{tema.nombre}" itemValue="#{tema}" />                                        
+                                    </r2r:selectOneMenu>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <r2r:inputFile label="Portada" 
+                                                   value="#{cc.file}" id="portada"
+                                                   update="#{cc.clientId}:portadaForm"
+                                                   uploadListener="#{cc.handleFileUpload}" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h:panelGroup id="portadaForm" >
+                                        <h:panelGroup rendered="#{not empty cc.attrs.value.portada}" >
+                                            <o:graphicImage value="#{cc.attrs.value.portada}" dataURI="true"  width="200" />
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{empty cc.attrs.value.portada}" >
+                                            <h:graphicImage library="dist" name="img/boxed-bg.png" width="200" />
+                                        </h:panelGroup>
+                                    </h:panelGroup>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <r2r:inputTextArea value="#{cc.attrs.value.resumen}" 
+                                                       label="#{msg.publicacionResumen}" 
+                                                       placeholder="#{msg.etiquetaPlaceolderPubResumen}" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <r2r:inputText value="#{cc.attrs.value.precio}" 
+                                                   label="#{msg.publicacionPrecio}"  
+                                                   placeholder="#{msg.etiquetaPlaceolderPubPrecio}"/>    
+                                </div>
+				<div class="col-md-6">
+                                    <r2r:inputText value="#{cc.attrs.value.descuento}" 
+                                                   label="#{msg.publicacionDescuento}" 
+                                                   placeholder="#{msg.etiquetaPlaceolderPubDescuento}"/>
+                                </div>
+                            </div>
+                           <div class="row">
+                                <div class="col-md-6">
+                                    <r2r:inputText value="#{cc.attrs.value.numeroPaginas}" 
+                                                   label="#{msg.publicacionNoPaginas}" 
+                                                   placeholder="#{msg.etiquetaPlaceolderPubNoPaginas}"/>
+                                </div>
+                            </div>
+                            
+                        </ui:decorate>
+                    </ui:define>
+                    <ui:define name="box-footer">
+                        <div class="row">
+                            <p:link outcome="#{cc.attrs.outcome}" class="btn btn-link">
+                                <li class="fa fa-arrow-left" />
+                                <span>#{msg.cancelar}</span>
+                            </p:link>
+                            <o:importConstants type="com.r2r.core.jsf.JSFConstant"/>
+                            <p:commandButton action="#{cc.attrs.actionForm}" class="btn btn-primary"
+                                             update=":#{JSFConstant.MAIN_MESSAGES_GROWL}"
+                                             ajax="false"
+                                             value="#{msg.save}"  />
+                        </div>
+
+                    </ui:define>
+
+                </ui:decorate>
+            </h:form>
+        </div>
+    </cc:implementation>
+</html>

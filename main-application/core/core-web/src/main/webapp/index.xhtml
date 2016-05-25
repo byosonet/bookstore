@@ -1,0 +1,18 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/resources/template/mainTemplate.xhtml"
+                xmlns:r2r="http://xmlns.jcp.org/jsf/composite/r2rcomp"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="title">#{properties.applicationName}</ui:define>
+    <ui:define name="subtitle"></ui:define>
+    <ui:define name="content">
+        <div class="row vertical-align">
+            <div class="col-md-4"></div>
+            <div class="col-md-4"> <h:graphicImage library="images" name="logo.png" class="img-responsive center-block"/></div>
+            <div class="col-md-4"></div>
+        </div>
+    </ui:define>
+</ui:composition>
+

@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:r2r="http://xmlns.jcp.org/jsf/composite/r2rcomp"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <!-- INTERFACE -->
+    <cc:interface componentType="editorialForm">
+        <cc:attribute name="value"
+                      type="com.r2r.bookstore.db.entity.Editorial"
+                      required="true"/>
+        <cc:attribute name="actionForm"
+                      method-signature="java.lang.String action()"
+                      required="true"/>
+        <cc:attribute name="update"
+                      type="java.lang.String" />
+        <cc:attribute name="outcome"
+                      required="true"
+                      type="java.lang.String" />
+        <cc:attribute name="alta" type="java.lang.Boolean" default="false" />
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <div class="row">
+            <!-- general form elements -->
+
+            <!-- form start -->
+            <h:form id="form" role="form" prependId="false" >
+
+                <ui:decorate template="/resources/r2rui/form.xhtml">
+                    <ui:param name="headerTitle" value="#{msg.editorialDatosEditorial}"/>
+                    <ui:define name="box-body">
+                        <ui:decorate template="/resources/r2rui/formColumn.xhtml">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <r2r:inputText value="#{cc.attrs.value.nombre}" label="#{msg.etiquetaNombre}" required="true" placeholder="#{msg.etiquetaPlaceolderNameEditorial}" />
+                                </div>
+				<div class="col-md-6">
+                                    <r2r:inputText value="#{cc.attrs.value.rfc}" label="#{msg.etiquetaRfc}" placeholder="#{msg.etiquetaPlaceholderRfc}"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <r2r:inputText value="#{cc.attrs.value.email}" label="#{msg.etiquetaMail}" required="true" placeholder="#{msg.etiquetaPlaceholderMail}"/>
+                                </div>
+                                <div class="col-md-6">
+                                    <r2r:inputText value="#{cc.attrs.value.telefono}" label="#{msg.etiquetaTelefono}" required="true" placeholder="#{msg.etiquetaPlaceholderTelefono}"/>
+                                </div>
+                            </div>
+                            <div class="row"></div>
+                            <ui:param name="headerTitle" value="#{msg.editorialDatosEditorialDireccion}"/>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <r2r:inputText value="#{cc.attrs.value.direccion.calle}" label="#{msg.etiquetaCalle}" required="true" placeholder="#{msg.etiquetaPlaceolderCalle}"/>
+                                </div>
+                                <div class="col-md-6">
+                                    <r2r:inputText value="#{cc.attrs.value.direccion.referencia}" label="#{msg.etiquetaReferencia}" placeholder="#{msg.etiquetaPlaceholderReferencia}"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <r2r:inputText value="#{cc.attrs.value.direccion.numeroExt}" label="#{msg.etiquetaNumExt}" required="true" placeholder="#{msg.etiquetaPlaceholderNumExt}"/>
+                                </div>
+                                <div class="col-md-6">
+                                    <r2r:inputText value="#{cc.attrs.value.direccion.numeroInt}" label="#{msg.etiquetaNumInt}" placeholder="#{msg.etiquetaPlaceholderNumInt}"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <r2r:selectOneMenu id="estado" required="true" value="#{cc.attrs.value.direccion.estado}" label="#{msg.etiquetaEstado}">
+                                        <f:selectItem itemLabel="#{msg.selecccioneUnaOpcion}" noSelectionOption="true" />
+                                        <f:selectItems value="#{cc.catalogoEstado}" var="estado" itemLabel="#{estado.nombre}" itemValue="#{estado}" />
+                                        <p:ajax event="change" process="@this" update=":delegacionMunicipio" listener="#{cc.handleDelegMunChange}"/>
+                                    </r2r:selectOneMenu>
+                                </div>
+                                <div class="col-md-6">
+                                    <r2r:selectOneMenu id="delegacionMunicipio" required="true" value="#{cc.attrs.value.direccion.delegacionMunicipio}" label="#{msg.etiquetaDelegacionMunicipio}">
+                                        <f:selectItem itemLabel="#{msg.selecccioneUnaOpcion}" noSelectionOption="true" />
+                                        <f:selectItems value="#{cc.catalogoDelegacionMunicipio}" var="delegacionMunicipio" itemLabel="#{delegacionMunicipio.nombre}" itemValue="#{delegacionMunicipio}" />                                        
+                                        <p:ajax event="change" update=":coloniaLocalidad" listener="#{cc.handleColoniaLocalidadChange}"/>
+                                    </r2r:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <r2r:selectOneMenu id="coloniaLocalidad" required="true" value="#{cc.attrs.value.direccion.coloniaLocalidad}" label="#{msg.etiquetaColoniaLocalidad}">
+                                        <f:selectItem itemLabel="#{msg.selecccioneUnaOpcion}" noSelectionOption="true" />
+                                        <f:selectItems value="#{cc.catalogoColoniaLocalidad}" var="coloniaLocalidad" itemLabel="#{coloniaLocalidad.nombre}" itemValue="#{coloniaLocalidad}" />                                        
+                                        <p:ajax event="change" update=":codigoPostal" listener="#{cc.handleCPChange}"/>
+                                    </r2r:selectOneMenu>
+                                </div>
+                                <div class="col-md-6">
+                                    <r2r:inputText id="codigoPostal" value="#{cc.attrs.value.direccion.codigoPostal}" label="#{msg.etiquetaCP}" required="true" placeholder="#{msg.etiquetaPlaceholderCP}"/>
+                                </div>
+                            </div>
+                        </ui:decorate>
+                    </ui:define>
+                    <ui:define name="box-footer">
+                        <div class="row">
+                            <p:link outcome="#{cc.attrs.outcome}" class="btn btn-link">
+                                <li class="fa fa-arrow-left" />
+                                <span>#{msg.cancelar}</span>
+                            </p:link>
+                            <o:importConstants type="com.r2r.core.jsf.JSFConstant"/>
+                            <p:commandButton action="#{cc.attrs.actionForm}" class="btn btn-primary"
+                                             update=":#{JSFConstant.MAIN_MESSAGES_GROWL}"
+                                             ajax="false"
+                                             value="#{msg.save}"  />
+                        </div>
+
+                    </ui:define>
+
+                </ui:decorate>
+            </h:form>
+        </div>
+    </cc:implementation>
+</html>

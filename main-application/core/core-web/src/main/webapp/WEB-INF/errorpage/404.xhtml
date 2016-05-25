@@ -1,0 +1,21 @@
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/resources/templates/baseTemplate.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:define name="title">
+        #{msg.viewExpiredExceptionHeader}
+    </ui:define>
+    <ui:define name="baseContent">
+        <div class="align-center">
+            <div class="align-center">
+                <div class="block-inline ui-state-error">
+                    No se encontro la pagina solicitada <h:link outcome="/login" value="#{msg.viewExpiredExceptionLink}"/>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+

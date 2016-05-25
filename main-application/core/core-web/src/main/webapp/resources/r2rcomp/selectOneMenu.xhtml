@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <!-- INTERFACE -->
+    <cc:interface componentType="input">
+        <cc:attribute name="label"/>
+        <cc:attribute name="value" />
+        <cc:attribute name="required" default="false"/>
+        <cc:attribute name="disabled" default="false"/> 
+        <cc:clientBehavior name="change" event="change"/>
+        <cc:attribute name="valueChangeListener" method-signature="void method(javax.faces.event.ValueChangeEvent)"/>
+
+    </cc:interface>
+
+    <cc:implementation>
+        <div class="form-group">
+            <h:outputLabel for="#{cc.input.id}" rendered="#{not empty cc.attrs.label}" id="label">
+                #{cc.attrs.label}
+                <h:panelGroup rendered="#{cc.attrs.required}">
+                    <i class="fa fa-asterisk text-red asterisc-size-small"></i>
+                </h:panelGroup>
+            </h:outputLabel>
+            <p:selectOneMenu id="#{cc.attrs.id}" value="#{cc.attrs.value}" style="width: 100%;" binding="#{cc.input}" required="#{cc.attrs.required}">
+                <cc:insertChildren />
+            </p:selectOneMenu>
+            <h:panelGroup rendered="#{cc.attrs.disabled}">
+                <p class="form-control-static" style="margin-left: 1%;">#{cc.attrs.value}</p>
+            </h:panelGroup>
+            <p:message for="#{cc.input.id}" id="message" styleClass="control-label"  />
+        </div>
+    </cc:implementation>
+</html>

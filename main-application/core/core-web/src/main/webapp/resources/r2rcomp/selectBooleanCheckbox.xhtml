@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <!-- INTERFACE -->
+    <cc:interface componentType="input">
+        <cc:attribute name="label"/>
+        <cc:attribute name="value" />
+        <cc:attribute name="required" default="false"/>
+        <cc:attribute name="disabled" default="false"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <div class="form-group">
+            <p:selectBooleanCheckbox class="square" value="#{cc.attrs.value}"
+                                     binding="#{cc.input}"
+                                     required="#{cc.attrs.required}" disabled="#{cc.attrs.disabled}"/>
+            <span style="margin-left: 5px;">#{cc.attrs.label}</span>
+            <p:message for="#{cc.input.id}" id="message" styleClass="control-label"  />
+        </div>
+    </cc:implementation>
+</html>

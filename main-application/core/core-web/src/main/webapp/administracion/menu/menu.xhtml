@@ -1,0 +1,22 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/resources/template/mainTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:r2r="http://xmlns.jcp.org/jsf/composite/r2rcomp"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="title">#{msg.menu}</ui:define>
+    <ui:define name="subtitle">#{msg.listadoMenu}</ui:define>
+    <ui:define name="content">
+        <h:outputStylesheet library="plugins" name="bootstrap-lightbox/ekko-lightbox.css" />
+        <div class="row">
+            <h:form role="form">
+                <p:tree value="#{adminMenu.listMenu}" var="itemMenu" selectionMode="checkbox" selection="">
+                    <p:treeNode expandedIcon=""
+            </p:tree>
+        </h:form>
+    </div>
+</ui:define>
+
+</ui:composition>

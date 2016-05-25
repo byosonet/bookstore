@@ -1,0 +1,34 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/resources/template/baseTemplate.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:define name="title">
+        #{msg.viewExpiredExceptionHeader}
+    </ui:define>
+    <ui:define name="mainContent">
+        <div class="align-center">
+            <div class="block-inline ui-state-error">
+                #{msg.viewExpiredExceptionMessage}. <h:link outcome="/login" value="#{msg.viewExpiredExceptionLink}"/>
+                <p>#{msg.youllbeRedirectedIn} <span id="redirectSecondSpan">5</span> #{msg.seconds}</p>
+            </div>
+        </div>
+        <script>
+            var targetURL = '#{request.contextPath}/login';
+            var countdownfrom = 5;
+            var currentsecond = countdownfrom;
+            countredirect();
+
+            function countredirect() {
+                $('#redirectSecondSpan').html(currentsecond);
+                if (currentsecond > 1) {
+                    currentsecond -= 1;
+                } else {
+                    window.location = targetURL;
+                    return;
+                }
+                setTimeout("countredirect()", 1000);
+            }
+        </script>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:r2r="http://xmlns.jcp.org/jsf/composite/r2rcomp"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <!-- INTERFACE -->
+    <cc:interface componentType="addressForm">
+        <cc:attribute name="value"
+                      type="com.r2r.core.db.entity.Direccion"
+                      required="true"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+
+        <div class="box-header">
+            <h3 class="box-title">#{msg.addOfficeAddressData}</h3>
+            <hr/>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <r2r:inputText label="#{msg.addressCalle}" required="true" placeholder="#{msg.addAddressPlaceolderCalle}" value="#{cc.attrs.value.calle}" />
+                </div>
+                <div class="col-md-6">
+                    <r2r:inputText value="#{cc.attrs.value.referencia}" label="#{msg.addressReferencia}" placeholder="#{msg.addAddressPlaceholderReferencia}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <r2r:inputText value="#{cc.attrs.value.numeroExt}" label="#{msg.addressNumExt}" required="true" placeholder="#{msg.addAddressPlaceholderNumExt}"/>
+                </div>
+                <div class="col-md-6">
+                    <r2r:inputText label="#{msg.addressNumInt}" placeholder="#{msg.addAddressPlaceholderNumInt}" value="#{cc.attrs.value.numeroInt}" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <r2r:selectOneMenu id="estado" required="true" value="#{cc.attrs.value.estado}" label="#{msg.addressEstado}">
+                        <f:selectItem itemLabel="#{msg.addSelectOption}" noSelectionOption="true" />
+                        <f:selectItems value="#{cc.addressEstado}" var="estado" itemLabel="#{estado.nombre}" itemValue="#{estado}" />
+                        <p:ajax event="change" process="@this" update=":delegacionMunicipio" listener="#{cc.handleDelegMunChange}"/>
+                    </r2r:selectOneMenu>
+                </div>
+                <div class="col-md-6">
+                    <r2r:selectOneMenu id="delegacionMunicipio" required="true" value="#{cc.attrs.value.delegacionMunicipio}" label="#{msg.addessDelegacionMunicipio}">
+                        <f:selectItem itemLabel="#{msg.addSelectOption}" noSelectionOption="true" />
+                        <f:selectItems value="#{cc.addressDelegacionMunicipio}" var="delegacionMunicipio" itemLabel="#{delegacionMunicipio.nombre}" itemValue="#{delegacionMunicipio}" />
+                        <p:ajax event="change" update=":delegacionMunicipio" listener="#{cc.handleColoniaLocalidadChange}"/>
+                    </r2r:selectOneMenu>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <r2r:selectOneMenu id="coloniaLocalidad" required="true" value="#{cc.attrs.value.coloniaLocalidad}" label="#{msg.addressColoniaLocalidad}">
+                        <f:selectItem itemLabel="#{msg.addSelectOption}" noSelectionOption="true" />
+                        <f:selectItems value="#{cc.addressColoniaLocalidad}" var="coloniaLocalidad" itemLabel="#{coloniaLocalidad.nombre}" itemValue="#{coloniaLocalidad}" />
+                        <p:ajax event="change" update=":codigoPostal" listener="#{cc.handleCPChange}"/>
+                    </r2r:selectOneMenu>
+                </div>
+                <div class="col-md-6">
+                    <r2r:inputText id="codigoPostal" label="#{msg.addressCP}" required="true" placeholder="#{msg.addAddressPlaceholderCP}" value="#{cc.attrs.value.codigoPostal}" />
+                </div>
+            </div>
+        </div>
+    </cc:implementation>
+</html>

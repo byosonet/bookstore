@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <!-- INTERFACE -->
+    <cc:interface componentType="treeMenus">
+        <cc:attribute name="selectionMenus" required="true"/>
+        <cc:attribute name="idProfile" required="true"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <div class="form-group">
+            <h:outputLabel value="Menus" />
+            <p:tree value="#{cc.rootNode}" var="node"
+                    styleClass="form-control"
+                    style="  height: 100%;"
+                    selectionMode="checkbox"
+                    animate="true"
+                    required="true"
+                    selection="#{cc.selectedNodes}"
+                    id="tree"
+                    requiredMessage="Debes seleccionar alguno">
+                <p:treeNode type="sistema" icon="fa fa-globe">
+                    <h:outputText value="#{node.nombre}"/>
+                </p:treeNode>
+                <p:treeNode type="menu" icon="#{node.icon}">
+                    <h:outputText value="#{node.nombre}"/>
+                </p:treeNode>
+            </p:tree>
+            <p:message for="tree" id="message" styleClass="control-label" />
+        </div>
+    </cc:implementation>
+</html>

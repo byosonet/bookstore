@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport' />
+
+        <!-- Bootstrap 3.3.2 -->
+        <h:outputStylesheet library="bootstrap" name="css/bootstrap.css" />
+        <!-- FontAwesome 4.3.0 -->
+        <h:outputStylesheet library="plugins" name="font-awesome/css/font-awesome.css" />
+        <!-- Ionicons 2.0.0 -->
+        <h:outputStylesheet library="plugins" name="ionicons/css/ionicons.css" />
+        <!-- Theme jquery style -->
+        <h:outputStylesheet library="dist" name="css/jquery-ui.css" />
+        <!-- Theme style -->
+        <h:outputStylesheet library="dist" name="css/AdminLTE.css" />
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+             folder instead of downloading all of them to reduce the load. -->
+        <h:outputStylesheet library="dist" name="css/skins/_all-skins.css" />
+        <!-- Morris chart -->
+        <h:outputStylesheet library="plugins" name="morris/morris.css" />
+        <!-- jvectormap -->
+        <h:outputStylesheet library="plugins" name="jvectormap/jquery-jvectormap-1.2.2.css" />
+        <!-- Date Picker -->
+        <h:outputStylesheet library="plugins" name="datepicker/datepicker3.css" />
+        <!-- Time Picker -->
+        <h:outputStylesheet library="plugins" name="timepicker/bootstrap-timepicker.css" />
+        <!-- DATA TABLES -->
+        <h:outputStylesheet library="plugins" name="datatables/dataTables.bootstrap.css" />
+        <!-- Daterange picker -->
+        <h:outputStylesheet library="plugins" name="daterangepicker/daterangepicker-bs3.css" />
+        <!-- bootstrap wysihtml5 - text editor -->
+        <h:outputStylesheet library="plugins" name="bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" />
+        <!-- iCheck -->
+        <h:outputStylesheet library="plugins" name="iCheck/square/blue.css" />
+        <!-- Custom style -->
+        <h:outputStylesheet library="dist" name="css/components.css" />
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+        <title><ui:insert name="title">titulo</ui:insert></title>
+        <link rel="shortcut icon" type="image/png" href="#{resource['images:favico16x16.png']}"/>
+    </h:head>
+    <h:body class="#{empty bodyClass ? 'skin-blue' : bodyClass}">
+
+
+        <!-- Bootstrap 3.3.2 JS -->
+        <h:outputScript library="bootstrap" name="js/bootstrap.min.js" />
+        <!-- Morris.js charts -->
+        <h:outputScript library="other" name="raphael-min.js" />
+        <h:outputScript library="plugins" name="morris/morris.min.js" />
+        <!-- Sparkline -->
+        <h:outputScript library="plugins" name="sparkline/jquery.sparkline.min.js" />
+        <!-- jvectormap -->
+        <h:outputScript library="plugins" name="jvectormap/jquery-jvectormap-1.2.2.min.js" />
+        <h:outputScript library="plugins" name="jvectormap/jquery-jvectormap-world-mill-en.js" />
+        <!-- jQuery Knob Chart -->
+        <h:outputScript library="plugins" name="knob/jquery.knob.js" />
+        <!-- daterangepicker -->
+        <h:outputScript library="plugins" name="daterangepicker/daterangepicker.js" />
+        <!-- datepicker -->
+        <h:outputScript library="plugins" name="datepicker/bootstrap-datepicker.js" />
+        <!-- timepicker -->
+        <h:outputScript library="plugins" name="timepicker/bootstrap-timepicker.js" />
+        <!-- Bootstrap WYSIHTML5 -->
+        <h:outputScript library="plugins" name="bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" />
+        <!-- iCheck -->
+        <h:outputScript library="plugins" name="iCheck/icheck.min.js" />
+        <!-- Slimscroll -->
+        <h:outputScript library="plugins" name="slimScroll/jquery.slimscroll.min.js" />
+        <!-- FastClick -->
+        <h:outputScript library="plugins" name="fastclick/fastclick.min.js" />
+        <!-- AdminLTE App -->
+        <h:outputScript library="dist" name="js/app.min.js" />
+        <!-- AdminLTE App -->
+        <h:outputScript library="dist" name="js/js.js" />
+        <script>
+            $(document).ready(function () {
+                $('input[type="checkbox"].square, input[type="radio"].square').iCheck({
+                    checkboxClass: 'icheckbox_square-blue',
+                    radioClass: 'iradio_square-blue',
+                });
+            });
+            $(function () {
+                //Timepicker
+                $(".timepicker").timepicker({
+                    showInputs: false
+                });
+            });
+        </script>
+        <p:growl for="mainGrowl" id="mainGrowl" escape="false"/>
+        <ui:insert name="mainContent"/>
+    </h:body>
+</html>

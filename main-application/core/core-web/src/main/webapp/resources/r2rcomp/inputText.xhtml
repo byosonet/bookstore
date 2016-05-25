@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <cc:interface componentType="input">
+        <cc:attribute name="label"/>
+        <cc:attribute name="value" />
+        <cc:attribute name="required" default="false"/>
+        <cc:attribute name="placeholder"/>
+        <cc:attribute name="disabled" default="false"/>
+        <cc:attribute name="icon"/>
+        <cc:attribute name="onkeyup"/>
+    </cc:interface>
+
+    <cc:implementation>
+        <div class="form-group">
+            <h:outputLabel for="#{cc.input.id}" rendered="#{not empty cc.attrs.label}" id="label">
+                #{cc.attrs.label}
+                <h:panelGroup rendered="#{cc.attrs.required}">
+                    <i class="fa fa-asterisk text-red asterisc-size-small"></i>
+                </h:panelGroup>
+            </h:outputLabel>
+            <p:inputText
+                onkeyup="#{not empty cc.attrs.onkeyup ? cc.attrs.onkeyup : '' }"
+                class="form-control"
+                value="#{cc.attrs.value}"
+                binding="#{cc.input}"
+                id="input"
+                rendered="#{not cc.attrs.disabled}"
+                required="#{cc.attrs.required}" pt:placeholder="#{cc.attrs.placeholder}" />
+            <h:panelGroup rendered="#{cc.attrs.disabled}">
+                <p class="form-control-static" style="margin-left: 1%;">#{cc.attrs.value}</p>
+            </h:panelGroup>
+            <span class="#{cc.attrs.icon}"></span>
+            <p:message for="#{cc.input.id}" id="message" styleClass="control-label" />
+        </div>
+    </cc:implementation>
+</ui:composition>

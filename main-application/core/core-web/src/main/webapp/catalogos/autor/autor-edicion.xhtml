@@ -1,0 +1,18 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/resources/template/mainTemplate.xhtml"
+                xmlns:r2r="http://xmlns.jcp.org/jsf/composite/r2rform"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:o="http://omnifaces.org/ui">
+    <f:metadata>
+        <o:viewParam name="id" value="#{autorEdit.id}" required="true" converter="javax.faces.Integer"/>
+        <f:viewAction action="#{autorEdit.init}" />
+    </f:metadata>
+    <ui:define name="title">#{msg.autorTituloCatalogo}</ui:define>
+    <ui:define name="subtitle">#{msg.autorListadoDeAutores}</ui:define>
+    <ui:define name="content">
+        <r2r:autorForm id="#{autorEdit.formId}" value="#{autorEdit.autor}"
+                      actionForm="#{autorEdit.doAction()}"
+                      outcome="#{autorEdit.outcome}"/>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,58 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/resources/template/baseTemplate.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+    <ui:define name="title"><ui:insert name="title">Titulo</ui:insert></ui:define>
+    <ui:define name="mainContent">
+        <div class="wrapper">
+            <p:ajaxStatus  class=" ui-ajax-status">
+                <f:facet name="start">
+                    <div class="box box-solid box-warning" style="margin-bottom: 0px; ">
+                        <div class="box-header">
+                            <div class="box-title" style="  width: 100%; text-align: center;">
+                                #{msg.cargando}<h:graphicImage library="images" name="mainCircularLoading.gif"/>
+                            </div>
+
+                        </div><!-- /.box-header -->
+                    </div>
+
+                </f:facet>
+
+                <f:facet name="complete">
+                    <h:outputText value="" />
+                </f:facet>
+            </p:ajaxStatus>
+
+            <ui:include src="/resources/template/commonHeader.xhtml"/>
+
+            <ui:include src="/resources/template/commonSidebar.xhtml"/>
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        <ui:insert name="title">Titulo</ui:insert>
+                        <small><ui:insert name="subtitle">subTitulo</ui:insert></small>
+                    </h1>
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                    <ui:insert name="content">Main Content</ui:insert>
+                </section><!-- /.content -->
+            </div><!-- /.content-wrapper -->
+
+
+            <footer class="main-footer">
+                <div class="pull-right hidden-xs">
+                    <b>Version</b> #{properties.version}
+                </div>
+                <p:outputLabel value="#{properties.copyRight}" escape="false"/>
+            </footer>
+        </div><!-- ./wrapper -->
+    </ui:define>
+</ui:composition>

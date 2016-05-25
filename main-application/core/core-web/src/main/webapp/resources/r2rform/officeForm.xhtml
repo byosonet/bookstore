@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:r2r="http://xmlns.jcp.org/jsf/composite/r2rcomp"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:r2rform="http://xmlns.jcp.org/jsf/composite/r2rform">
+
+    <!-- INTERFACE -->
+    <cc:interface componentType="officeForm">
+        <cc:attribute name="value"
+                      type="com.r2r.core.db.entity.navegacion.Oficina"
+                      required="true"/>
+        <cc:attribute name="actionForm"
+                      method-signature="void action(javax.faces.event.ActionEvent)"
+                      required="true"/>
+        <cc:attribute name="update"
+                      type="java.lang.String" />
+        <cc:attribute name="outcome"
+                      required="true"
+                      type="java.lang.String" />
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <div class="row">
+            <!-- general form elements -->
+            <!-- form start -->
+            <h:form id="form" role="form" >
+                <div class="col-md-12">
+                    <div class="box box-primary">
+                        <div class="col-md-6">
+
+                            <div class="box-header">
+                                <h3 class="box-title">#{msg.addOfficeOfficeData}</h3>
+                                <hr/>
+                            </div><!-- /.box-header -->
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <r2r:inputText label="#{msg.officeClave}" required="true" placeholder="#{msg.addOfficePlaceolderClave}" value="#{cc.attrs.value.clave}" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <r2r:inputText value="#{cc.attrs.value.abreviatura}" label="#{msg.officeAbreviatura}" required="true"  placeholder="#{msg.addOfficePlaceholderAbreviatura}"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <r2r:inputText label="#{msg.officeNombre}" required="true" placeholder="#{msg.addUserPlaceolderName}" value="#{cc.attrs.value.nombre}" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <r2r:inputText value="#{cc.attrs.value.telefono}" label="#{msg.addPhone}" placeholder="#{msg.addOfficePlaceholderPhone}"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <r2r:selectOneMenu value="#{cc.attrs.value.oficinaPadreOficina}" label="#{msg.OfficeFather}">
+                                            <f:selectItem itemLabel="#{msg.addOfficeSelectOption}" noSelectionOption="true" />
+                                            <f:selectItems value="#{cc.officeFather}" var="father" itemLabel="#{father.nombre}" itemValue="#{father}" />
+                                        </r2r:selectOneMenu>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <r2r:selectOneMenu required="true" value="#{cc.attrs.value.responsableOficina}" label="#{msg.userResp}">
+                                            <f:selectItem itemLabel="#{msg.addOfficeSelectOption}" noSelectionOption="true" />
+                                            <f:selectItems value="#{cc.userResponsable}" var="user" itemLabel="#{user.nombre}" itemValue="#{user}" />
+                                        </r2r:selectOneMenu>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <r2rform:addressForm value="#{cc.attrs.value.direccion}"/>
+                        </div>
+                        <div class="box-footer">
+                            <p:link outcome="#{cc.attrs.outcome}" class="btn btn-link">
+                                <li class="fa fa-arrow-left" />
+                                <span>#{msg.cancelar}</span>
+                            </p:link>
+                            <p:commandButton action="#{cc.attrs.actionForm}" class="btn btn-primary"
+                                             value="#{msg.save}" ajax="false" >
+                            </p:commandButton>
+                        </div>
+                    </div><!-- /.box -->
+                </div><!--/.col (left) -->
+            </h:form>
+        </div>
+    </cc:implementation>
+</html>
